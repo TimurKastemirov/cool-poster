@@ -16,7 +16,7 @@ class m200107_144108_create_brand_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(255)->notNull(),
             'description' => $this->text(),
-            'is_visible' => $this->boolean()->defaultValue(1)
+            'is_visible' => $this->boolean()->defaultValue(true)
         ]);
     }
 

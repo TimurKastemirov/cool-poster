@@ -22,7 +22,7 @@ class m200107_190713_create_product_table extends Migration
             'name' => $this->string(255)->notNull(),
             'url' => $this->string(255)->notNull(),
             'description' => $this->text(),
-            'is_visible' => $this->boolean()->defaultValue(1),
+            'is_visible' => $this->boolean()->defaultValue(true),
             'category_id' => $this->integer()->notNull(),
             'full_url' => $this->string(511)->notNull(),
             'brand_id' => $this->integer()->notNull(),

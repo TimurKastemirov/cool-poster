@@ -16,7 +16,7 @@ class m191026_140200_create_category_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(128)->notNull(),
             'description' => $this->text(),
-            'is_visible' => $this->boolean()->defaultValue(1)
+            'is_visible' => $this->boolean()->defaultValue(true)
         ]);
     }
 
