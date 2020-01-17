@@ -1,5 +1,4 @@
 <?php
-
     /**
      * @var $this yii\web\View
      * @var $dataProvider
@@ -8,7 +7,7 @@
 
     use yii\grid\GridView;
 
-    $this->title = 'Brand';
+    $this->title = 'Category';
 
     echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -18,6 +17,7 @@
             'id',
             'name',
             'description',
-            'is_visible'
+            'is_visible',
+            ['class' => 'yii\grid\ActionColumn']
         ],
     ]);
