@@ -1,23 +1,37 @@
 <?php
-    /**
-     * @var $this yii\web\View
-     * @var $dataProvider
-     * @var $searchModel
-     */
 
-    use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\grid\GridView;
 
-    $this->title = 'Category';
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\CategorySearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-    echo GridView::widget([
+$this->title = 'Categories';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="category-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
             'id',
             'name',
-            'description',
-            'is_visible',
-            ['class' => 'yii\grid\ActionColumn']
+            'description:ntext',
+            'is_visible:boolean',
+
+            ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]);
+    ]); ?>
+
+
+</div>
