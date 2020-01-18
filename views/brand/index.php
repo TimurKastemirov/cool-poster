@@ -1,23 +1,37 @@
 <?php
 
-    /**
-     * @var $this yii\web\View
-     * @var $dataProvider
-     * @var $searchModel
-     */
+use yii\helpers\Html;
+use yii\grid\GridView;
 
-    use yii\grid\GridView;
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\BrandSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-    $this->title = 'Brand';
+$this->title = 'Brands';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="brand-index">
 
-    echo GridView::widget([
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Create Brand', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
             'id',
             'name',
-            'description',
-            'is_visible'
+            'description:ntext',
+            'is_visible:boolean',
+
+            ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]);
+    ]); ?>
+
+
+</div>
