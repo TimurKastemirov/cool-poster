@@ -39,8 +39,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Brand', 'url' => ['/brand/index']],
-            ['label' => 'Category', 'url' => ['/category/index']],
+            ['label' => 'Brands', 'url' => ['/brand/index']],
+            ['label' => 'Categories', 'url' => ['/category/index']],
+            ['label' => 'Products', 'url' => ['/product/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
