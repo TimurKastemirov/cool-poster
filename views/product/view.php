@@ -35,10 +35,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'url:url',
             'description:ntext',
             'is_visible:boolean',
-            'category_id',
+            [
+                'label' => 'Brand',
+                'value' => $model->brand->name,
+            ],
+            [
+                'label' => 'Category',
+                'value' => $model->category->name,
+            ],
             'full_url:url',
-            'brand_id',
         ],
     ]) ?>
+
+    <div class="row">
+        <?php
+            foreach ($model->images as $image)
+            {
+        ?>
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="<?=$image->src?>" alt="<?=$image->description?>">
+                    </a>
+                </div>
+        <?php
+            }
+        ?>
+    </div>
 
 </div>

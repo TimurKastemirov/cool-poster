@@ -2,13 +2,13 @@
 
 use yii\helpers\Html;
 
-/**
- * @var $this yii\web\View
- * @var $product app\models\Product
- * @var $image app\models\Image
- * @var $categoryDropDownOpts array
- * @var $brandDropDownOpts array
- */
+    /**
+     * @var $this yii\web\View
+     * @var $product app\models\Product
+     * @var $image app\models\Image
+     * @var $categoryDropDownOpts array
+     * @var $brandDropDownOpts array
+     */
 
 $this->title = 'Create Product';
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];

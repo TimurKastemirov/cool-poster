@@ -71,7 +71,6 @@
         {
             $product = new Product();
             $image = new Image();
-            $productImage = new ProductImage();
 
             $postReq = Yii::$app->request->post();
             if (
@@ -80,10 +79,7 @@
             ) {
                 $product->save();
                 $image->save();
-                $productImage->product_id = $product->id;
-                $productImage->image_id = $image->id;
-                $productImage->validate();
-                $productImage->save();
+                $product->link('images', $image);
 
                 return $this->redirect(['view', 'id' => $product->id]);
             }
@@ -109,14 +105,20 @@
          */
         public function actionUpdate($id)
         {
-            $model = $this->findModel($id);
+            $product = $this->findModel($id);
+            $image = $product->images[0];
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($product->load(Yii::$app->request->post()) && $product->save()) {
+                return $this->redirect(['view', 'id' => $product->id]);
             }
 
+            $categoryDropDownOpts = Category::getAsDropDownOptions();
+            $brandDropDownOpts = Brand::getAsDropDownOptions();
             return $this->render('update', [
-                'model' => $model,
+                'product' => $product,
+                'image' => $image,
+                'categoryDropDownOpts' => $categoryDropDownOpts,
+                'brandDropDownOpts' => $brandDropDownOpts,
             ]);
         }
 
