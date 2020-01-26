@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "brand".
@@ -50,8 +51,14 @@ class Brand extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function getAsDropDownOptions()
+    {
+        $brands = self::find()->asArray()->all();
+        return ArrayHelper::map($brands, 'id', 'name');
+    }
+
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getProducts()
     {

@@ -47,6 +47,7 @@ class Product extends \yii\db\ActiveRecord
             [['custom_id'], 'string', 'max' => 45],
             [['name', 'url'], 'string', 'max' => 255],
             [['full_url'], 'string', 'max' => 511],
+            [['full_url'], 'url'],
             [['brand_id'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::className(), 'targetAttribute' => ['brand_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -70,8 +71,15 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
+    public function setDefaultCreateValues()
+    {
+        $this->is_visible = true;
+        $this->description = 'product default description';
+        return $this;
+    }
+
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getBrand()
     {
@@ -79,7 +87,7 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getCategory()
     {
@@ -87,7 +95,7 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getProductImages()
     {
@@ -95,7 +103,8 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
+     * @throws yii\base\InvalidConfigException
      */
     public function getImages()
     {
@@ -103,7 +112,7 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getProductVariants()
     {

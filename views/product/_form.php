@@ -1,32 +1,55 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+    use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Product */
-/* @var $form yii\widgets\ActiveForm */
+    /**
+     * @var $this yii\web\View
+     * @var $form yii\widgets\ActiveForm
+     * @var $product app\models\Product
+     * @var $image app\models\Image
+     * @var $categoryDropDownOpts array
+     * @var $brandDropDownOpts array
+     */
 ?>
 
 <div class="product-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'custom_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($product, 'custom_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($product, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($product, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($product, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'is_visible')->checkbox() ?>
+    <?= $form->field($product, 'is_visible')->checkbox() ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form
+        ->field($product, 'category_id')
+        ->dropDownList(
+            $categoryDropDownOpts,
+            [
+                'prompt' => [
+                    'text' => 'Please select',
+                    'options' => [
+                        'value' => 'none',
+                    ]
+                ]
+            ]
+        ) ?>
 
-    <?= $form->field($model, 'full_url')->textInput(['maxlength' => true]) ?>
+    <?= $form
+        ->field($product, 'brand_id')
+        ->dropDownList(
+            $brandDropDownOpts
+        ) ?>
 
-    <?= $form->field($model, 'brand_id')->textInput() ?>
+    <?= $form->field($product, 'full_url')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($image, 'src')->textInput(['maxlength' => true])->label('Image url') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
